@@ -43,24 +43,14 @@ const getData =async()=>{
     <div className='sidebar'>
         <div className='sidebar-header'>
             <Avatar src={user.photoURL} />
-            <div className='sidebar-headerRight'>
-            <IconButton>
-                <DonutLarge/>
-            </IconButton>
-            <IconButton>
-                <Chat/>
-            </IconButton>
-            <IconButton>
-                <MoreVert/>
-            </IconButton>
-            </div>
+            
         </div>
-        <div className='sidebar-search'>
+        {/* <div className='sidebar-search'>
             <div className='sidebar-searchContainer'>
                 <SearchOutlined/>
                 <input placeholder='Search'/>
             </div>
-        </div>
+        </div> */}
         <div className='sidebar-chats'>
             <SidebarChat addNewChart/>
             {

@@ -83,7 +83,7 @@ try {
           ?`Last updated at ${ new Date(updatedAt).toString().slice(0,25) }`
           : "Click on any group"}</p>
         </div>
-        <div className='chat-headerRight'>
+        {/* <div className='chat-headerRight'>
           <IconButton>
             <SearchOutlined/>
           </IconButton>
@@ -93,7 +93,7 @@ try {
           <IconButton>
             <MoreVert/>
           </IconButton>
-        </div>
+        </div> */}
       </div>
   <div className='chat-body'>
 
@@ -111,7 +111,7 @@ try {
     
       </div>
       {roomName && <div className='chat-footer'>
-        <InsertEmoticon/>
+        {/* <InsertEmoticon/> */}
         <form>
           <input placeholder='type message'
           onChange={e=>setInput(e.target.value)}
