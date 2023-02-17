@@ -7,6 +7,7 @@ import {stateContext} from "../contextApi/StateProvider"
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import Pusher from 'pusher-js'
+import loaderM from "../../w-loader.gif" 
 
 function Chat() {
   const [Input, setInput] = useState("");
@@ -14,6 +15,7 @@ function Chat() {
   const [updatedAt,setUpdatedAt]=useState("")
   const [messages,setMessages] = useState([]);
   const[{user}]=useContext(stateContext);
+  const [loading,setLoading]=useState(false);
 
   // console.log(messages)
   const {roomId} = useParams();
@@ -42,6 +44,7 @@ setMessages((prevMessages)=>[...prevMessages,msg]); // for this we need to comme
 },[])
 
   const roomData=async()=>{
+    setLoading(true);
     if(roomId){
       let room = await axios.get(`${Config.api}/room/${roomId}`)
       let messages = await axios.get(`${Config.api}/messages/${roomId}`)
@@ -50,6 +53,7 @@ setMessages((prevMessages)=>[...prevMessages,msg]); // for this we need to comme
       setMessages(messages.data)
       
     }
+    setLoading(false);
   }
 
 const sendMessage = async(e)=>{
@@ -97,7 +101,8 @@ try {
       </div>
   <div className='chat-body'>
 
-    {
+    { 
+    loading ? <div className="preloader"> <img src={loaderM} alt="" height={"30px"} /></div>: 
       messages.map((msg,index)=>{
         return  <p className={`chat-message ${msg.uid === user.uid ? "chat-receiver" : ''}`} key={index}>
         <span className='chat-name' >{msg.name}</span>

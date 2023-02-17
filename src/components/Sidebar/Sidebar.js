@@ -8,13 +8,17 @@ import SidebarChat from '../SidebarChat/SidebarChat'
 import axios from 'axios'
 import { Config } from '../../Config'
 import Pusher from 'pusher-js'
+import loader from "../../w-loader.gif"
 
 function Sidebar() {
     const [{user}]= useContext(stateContext);
     const [Rooms,setRooms]=useState([]);
-
+    const [loading,setLoading]=useState(false);
+console.log(loading);
     useEffect(()=>{
-        getData()
+        getData();
+        // setLoading(false);
+        // console.log(loading)
     },[])
 
     useEffect(()=>{   // pusher codes goes here
@@ -31,15 +35,25 @@ function Sidebar() {
     },[])
 
 const getData =async()=>{
+    
+    
     try {
+        setLoading(true);
+        // console.log(loading)
       let room = await axios.get(`${Config.api}/all/rooms`);
       setRooms(room.data);
+      console.log(loading);
+      setLoading(false);
     } catch (error) {
         console.log(error)
     }
+    
+    
 }
 //  console.log(rooms)
   return (
+    
+    
     <div className='sidebar'>
         <div className='sidebar-header'>
             <Avatar src={user.photoURL} />
@@ -51,18 +65,22 @@ const getData =async()=>{
                 <input placeholder='Search'/>
             </div>
         </div> */}
+        
         <div className='sidebar-chats'>
             <SidebarChat addNewChart/>
-            {
+            {loading ? <div className="preloader"> <img src={loader} alt="" height={"30px"} /></div> :
+            
                 Rooms.map((room)=>{
                    return  <SidebarChat key={room._id} id={room._id} name={room.name} />
                 })
             }
-
+            
         </div>
 
 
         </div>
+    
+        
 
   )
 }

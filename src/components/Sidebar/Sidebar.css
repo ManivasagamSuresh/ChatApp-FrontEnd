@@ -55,3 +55,10 @@ width: 100%; /*to type full in the flex width  */
     background-color: white;
     overflow: scroll;
 }
+.preloader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* position: absolute; */
+    padding-top: 30px;
+}

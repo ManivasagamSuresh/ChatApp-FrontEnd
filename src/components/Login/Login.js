@@ -27,7 +27,7 @@ try {
     
   }
   return (
-    <div className="login container">
+    <div className="login">
       <div className="login-container">
         <img src={require('../../chatLogo.png')} alt="hello"/>
         {/* <img src="https://t3.ftcdn.net/jpg/05/01/71/78/360_F_501717879_7RWecs3TL0zVJJXd7QAWzn39Z2CbEr4C.jpg"/> */}
