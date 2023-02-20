@@ -33,7 +33,7 @@ const createChat = async()=>{
     </Link>
   ) : (
     <div className='sidebarChat' onClick={createChat} >
-        <h2>Create Group</h2>
+        <h2 className='creategroup'>Create Group</h2>
     </div>
   )
 }
